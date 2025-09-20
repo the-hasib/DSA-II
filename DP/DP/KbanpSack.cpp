@@ -53,7 +53,7 @@ int main() {
     cout << "Enter capacity of knapsack: ";
     cin >> W;
 
-    cout << "Enter weights of items:\n";
+    cout << "Enter weights of items:";
     for (int i = 0; i < n; i++) cin >> weight[i];
     cout << "Enter values of items:\n";
     for (int i = 0; i < n; i++) cin >> value[i];
