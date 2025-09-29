@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <queue>
 #include <climits>
 using namespace std;
@@ -9,7 +8,7 @@ struct Node {
     Node(int c, int co, int s) : city(c), cost(co), stops(s) {}
 };
 
-int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
+int CheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
     vector<pair<int, int>> graph[n];
     for (auto& flight : flights) {
         // flight[0] = from, flight[1] = to, flight[2] = price
@@ -29,7 +28,6 @@ int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int
 
         for (auto& next : graph[u]) {
             int v = next.first, price = next.second;
-            // If not exceeding previously found cheaper cost and stops are within limit
             if (cost + price < dist[v] && stops <= K) {
                 dist[v] = cost + price;
                 q.push(Node(v, dist[v], stops + 1));
@@ -44,8 +42,8 @@ int main() {
     vector<vector<int>> flights = {{0,1,100},{1,2,100},{2,0,100},{1,3,600},{2,3,200}};
     int src = 0, dst = 3, K = 1;
 
-    int answer = findCheapestPrice(n, flights, src, dst, K);
-    cout << "Cheapest Price: " << answer << endl; // Output: 700
+    int answer = CheapestPrice(n, flights, src, dst, K);
+    cout << "Cheapest Price: " << answer << endl;
 
     return 0;
 }
